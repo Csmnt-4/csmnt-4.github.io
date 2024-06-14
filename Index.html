@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Part Page</title>
+    <style>
+        @font-face {
+            font-family: "JetBrains Mono";
+            src: url("../res/fonts/JetBrainsMono-Regular.ttf");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "JetBrains Mono", sans-serif;
+        }
+        /* Top part */
+        .top-part {
+            height: 900px;
+            background: linear-gradient(to right bottom, #D3D0CB 10%, #ED1C24, #1C1F21);
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            flex-direction: column;
+        }
+        .text-fields {
+            display: flex;
+            justify-content: space-around;
+            font-size: 30px;
+            width: 80%;
+            margin-top: 200px;
+        }
+        .text-field {
+            padding: 60px;
+            background: rgba(0, 0, 0, 0);
+        }
+        .text-field.right {
+            background: #000;
+            color: #fff;
+            border-radius: 0 100px 0 100px;
+            padding: 60px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 212px);
+            grid-template-rows: repeat(4, 212px);
+            gap: 45px;
+            justify-content: center;
+            margin-top: 120px;
+        }
+        .grid .placeholder {
+            grid-column: span 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 95px;
+            margin-top: 140px;
+            margin-left: -290px;
+        }
+        .grid .square {
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .grid .square-bottom-right {
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 0 0 100px 0;
+        }
+
+        .grid .square-top-left {
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 100px 0 0 0;
+        }
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+
+        }
+        .overlay-content {
+            background: #000000;
+            color: #ffffff;
+            padding: 20px;
+            width: 1200px;
+            height: 700px;
+            position: relative;
+        }
+        .overlay .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .overlay .scrolling-row {
+            display: flex;
+            overflow: hidden;
+            position: absolute;
+            top: 40px;
+            width: 100%;
+            height: 200px;
+        }
+        .overlay .scrolling-row img {
+            margin-right: 20px;
+            height: 200px;
+        }
+        .overlay .content {
+            position: absolute;
+            top: 300px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+        }
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 40px;
+            justify-content: center;
+            margin-top: 100px;
+        }
+        .bottom-grid .square {
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bottom-grid .placeholder {
+            grid-column: span 10;
+            display: compact;
+            align-items: start;
+            font-size: 30px;
+            justify-content: start;
+            margin-top: 50px;
+            color: #fff;
+         }
+        .contact-info {
+            margin-top: 90px;
+            text-align: center;
+            color: #fff;
+        }
+        .contact-info .textbox {
+            margin: 20px 0;
+        }
+
+        /* Bottom part */
+        .bottom-part {
+            height: 1650px;
+            background-color: #1C1F21;
+        }
+    </style>
+</head>
+<body>
+<div class="top-part">
+    <div class="text-fields">
+        <div class="text-field left">Hi,<br>I’m Victor, and I’m<br>a junior developer!<br><br>I'm open to opportunities<br>that offer the chance<br>to work remotely<br>and supports continuous<br>learning</div>
+        <div class="text-field right">I love proactivity,<br>efficient solutions<br>and collaborative<br>efforts<br><br>
+            I believe in<br>communication and<br>commitment being the<br>key to most problems!</div>
+    </div>
+    <div class="grid">
+        <div class="square-top-left"> <img id="1" src="image1.jpg" width=212 height=212 alt="Image 1"></div>
+        <div class="square"> <img id="2" src="image1.jpg" width=212 height=212 alt="Image 1"></div>
+        <div class="placeholder">Projects</div>
+        <div class="square" id="3">3</div>
+        <div class="square" id="4">4</div>
+        <div class="square" id="5">5</div>
+        <div class="square" id="6">6</div>
+        <div class="square" id="7">7</div>
+        <div class="square" id="8">8</div>
+        <div class="square" id="9">9</div>
+        <div class="square" id="10">10</div>
+        <div class="square" id="11">11</div>
+        <div class="square" id="12">12</div>
+        <div class="square" id="13">13</div>
+        <div class="square" id="14">14</div>
+        <div class="square" id="15">15</div>
+        <div class="square" id="16">16</div>
+        <div class="square-bottom-right" id="17">17</div>
+    </div>
+    <div class="bottom-grid">
+        <div class="placeholder">Skills</div>
+        <div class="square">Icon 1</div>
+        <div class="square">Icon 2</div>
+        <div class="square">Icon 3</div>
+        <div class="square">Icon 4</div>
+        <div class="square">Icon 5</div>
+        <div class="square">Icon 6</div>
+        <div class="square">Icon 7</div>
+        <div class="square">Icon 8</div>
+        <div class="square">Icon 9</div>
+        <div class="square">Icon 10</div>
+        <div class="square">Icon 11</div>
+        <div class="square">Icon 12</div>
+        <div class="square">Icon 13</div>
+        <div class="square">Icon 14</div>
+        <div class="square">Icon 15</div>
+        <div class="square">Icon 16</div>
+        <div class="square">Icon 17</div>
+        <div class="square">Icon 18</div>
+        <div class="square">Icon 19</div>
+        <div class="square">Icon 20</div>
+    </div>
+    <div class="contact-info">
+        <div class="textbox">Contact Me: v.a.anisimoff@gmail.com</div>
+        <div class="textbox">Look No Further: <a href="../res/resume/Resume.pdf">Resume</a> <a href="https://www.linkedin.com/in/anisimov-victor">LinkedIn</a></div>
+    </div>
+</div>
+<div class="bottom-part">
+</div>
+
+<div class="overlay" id="o1">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image2.jpg" alt="Image 2">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o2">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o3">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o4">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o5">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o6">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o7">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o8">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o9">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o10">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o11">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o12">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o13">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o14">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o15">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o16">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="o17">
+    <div class="overlay-content">
+        <div class="close">Close</div>
+        <div class="scrolling-row">
+            <img src="image1.jpg" alt="Image 1">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="content">
+            <div class="textbox">Text Box 1</div>
+            <div class="textbox">Text Box 2</div>
+            <div class="textbox">Text Box 3</div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Handle overlay display
+    document.querySelectorAll('.grid .square').forEach(square => {
+        square.addEventListener('click', function(e) {
+            document.getElementById("o"+e.target.id).style.display = 'flex';
+        });
+    });
+
+    document.querySelectorAll('.grid .square-top-left').forEach(square => {
+        square.addEventListener('click', function(e) {
+            document.getElementById("o"+e.target.id).style.display = 'flex';
+        });
+    });
+
+    document.querySelectorAll('.grid .square-bottom-right').forEach(square => {
+        square.addEventListener('click', function(e) {
+            document.getElementById("o"+e.target.id).style.display = 'flex';
+        });
+    });
+
+    document.querySelectorAll('.overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            var has_target = true;
+            var overlay_c_list = document.querySelectorAll('.overlay-content'); // returns NodeList
+            var overlay_c_array = [...overlay_c_list]; // converts NodeList to Array
+            overlay_c_array.forEach(overlay_c => {
+                if (overlay_c.contains(e.target)) {
+                    has_target = false;
+                }
+            });
+            if (has_target) {
+                overlay.style.display = 'none';
+            }
+        });
+    });
+
+
+    document.querySelector('.overlay').addEventListener('click', function(e) {
+        if (!document.querySelector('.overlay-content').contains(e.target) ){
+            var overlay_list = document.querySelectorAll('.overlay'); // returns NodeList
+            var overlay_array = [...overlay_list]; // converts NodeList to Array
+            overlay_array.forEach(overlay => {
+                    overlay.style.display = 'none';
+            });
+        }
+    });
+
+    document.querySelector('.overlay.close').addEventListener('click', function(e) {
+        if (!document.querySelector('.overlay-content').contains(e.target) ){
+            document.querySelector('.overlay').style.display = 'none';
+        }
+    });
+
+    // Automatic scrolling
+    let scrollInterval = setInterval(() => {
+        let row = document.querySelector('.scrolling-row');
+        row.scrollBy({ left: 200, behavior: 'smooth' });
+    }, 200);
+
+    document.querySelector('.overlay').addEventListener('mouseover', () => {
+        clearInterval(scrollInterval);
+    });
+
+    document.querySelector('.overlay').addEventListener('mouseout', () => {
+        scrollInterval = setInterval(() => {
+            let row = document.querySelector('.scrolling-row');
+            row.scrollBy({ left: 200, behavior: 'smooth' });
+        }, 2000);
+    });
+</script>
+</body>
+</html>
